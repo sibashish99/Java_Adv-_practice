@@ -1,0 +1,6 @@
+package com.java.stream;
+
+public class Product {
+  private String name;
+  p
+}

@@ -1,0 +1,16 @@
+package com.example.comparator;
+
+import java.util.ArrayList;
+
+public class ComparatorApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         ArrayList<Employee> emp= new ArrayList<>();
+         emp.add(new Employee("Sibashish",322729,56850,"SP&T"));
+         emp.add(new Employee("Amit",322729,56850,"SP&T"));
+         emp.add(new Employee("Sibashish",322729,56850,"SP&T"));
+         emp.add(new Employee("Sibashish",322729,56850,"SP&T"));
+	}
+
+}

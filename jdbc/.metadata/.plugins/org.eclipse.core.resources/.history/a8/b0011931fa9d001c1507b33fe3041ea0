@@ -1,0 +1,7 @@
+package com.practice.util;
+
+public class DBConnecton {
+    public void createConnection() {
+    	
+    }
+}

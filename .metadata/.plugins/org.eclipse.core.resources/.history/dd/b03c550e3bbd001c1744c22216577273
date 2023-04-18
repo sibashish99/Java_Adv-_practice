@@ -1,0 +1,29 @@
+package com.example.main;
+
+public class Application {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+          System.out.println("Hello word!");
+          /**
+           interfaces: set, list, queue, deque
+           class: ArrayList, Vector, linkedlist, priorityQueue, HashSet, linkedList, TreeSet
+          */
+          Student[] students= new Student[10];
+          students[0]= new Student();
+          
+          Object[] obj= new Object[10];
+          
+          
+          
+	}
+
+}
+
+class Book{
+	
+}
+class Student{
+	
+}
+

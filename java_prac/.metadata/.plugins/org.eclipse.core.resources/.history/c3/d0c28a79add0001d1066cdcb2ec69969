@@ -1,0 +1,10 @@
+package com.example.comparator;
+
+public class ComparatorApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         Employee emp
+	}
+
+}

@@ -1,0 +1,18 @@
+package com.example.test.three;
+
+public class PalildromeStringApp {
+
+	public static void main(String[] args) {
+      String str="My name is sibashish and i can speak malayalam";
+      
+	}
+	public static boolean isPalindrome(String str) {
+		int start=0, end=str.length();
+		while(start>end) {
+			if(str.charAt(start)!= str.charAt(end)) {
+				return false;
+			} 
+		}
+	}
+
+}

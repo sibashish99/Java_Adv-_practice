@@ -1,0 +1,10 @@
+package com.example.comparator;
+
+public class SalaryComparator implements{
+	@Override
+	public int compareTo(Employee o) {
+		// TODO Auto-generated method stub
+		return (int) (this.EmloyeeSalary-o.EmloyeeSalary);
+		
+	}
+}

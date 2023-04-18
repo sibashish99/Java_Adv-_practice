@@ -1,0 +1,20 @@
+package com.example.test.two;
+
+import java.util.List;
+
+public class Team {
+	private List<Player> players;
+      
+	public int getScore() {
+		if()
+		
+	}
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
+	}
+
+}

@@ -1,0 +1,7 @@
+package com.example.test.six;
+
+public class Singleton {
+     private static SingletonClass instance;
+     
+     private SingletonClass() {
+} 

@@ -1,0 +1,86 @@
+JDBC: done
+collections:
+>list : done
+        arraylist,-> done
+        linkedlist -> done
+	    vector(stack) -> done
+>queue : priorityQueue, deque, arrayaueue, 
+> set: hashset, linkedhashset, treeset - done
+> map : hashmap, linkedhashmap , hashtable, treemap - done
+
+left : iterator,- done
+       compatator - done
+	   comparable - done
+	   
+>java 8
+ -lambda exp - done 
+ -java functional interface- done
+ -java streams - done
+ -forEach - done
+ -method reference - done
+ - BiFunction Interface Methods - done
+ - MARKER INTERFACE - 
+ 
+ 
+ 
+ 
+ 
+=============================================================================
+Spring:
+       >Spring core
+	   -IOC container
+	   -Bean life cycle.
+	   -Dependency injection.
+	   -CI/SI
+	   -Autowired/factory method/Bean Factory/Application Context
+	   >web
+	    - Annotations
+        - MVC Structure
+        - Configuration
+        - Integrating different libraries/frameworks (Like Hibernate)
+		- Profiles
+
+	   >Spring AOP
+	    -How AOP Works
+        -Creating PointCut, JoinPoint, Aspect, etc (Basics Only)
+	   >Spring Security
+	    - Authentication
+        - Authorization
+        - OAuth2
+        - Form Authentications
+        - JWT(JSON Web Token)
+	   >Spring data integration
+	    -jdbc
+	   >Spring orm
+	     -ORM
+		 -Hibernate
+		 -Jpa
+		 -jdbc
+	   >Spring web/mvc
+	    -Servlet/jsp
+		-mvc crud
+	   	   
+Hibernate
+Spring Boot - Rest api
+Spring MVC
+
+==============================================================
+Design pattern:
+   >Creational Design Pattern
+   >Structural Design Pattern
+   >Behavioral Design Pattern
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+

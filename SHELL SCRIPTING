@@ -1,0 +1,211 @@
+#!/bin/bash
+
+current_log_file_size=0
+total_log_file_size=0
+if test "$1" = ""
+then
+   echo
+   echo "You must supply a subdirectory name."
+   echo
+   exit
+fi
+
+if !(test -d $1)
+then 
+    echo "Directory $1 not exist"
+	exit
+fi
+
+for i in $1/*.log
+do 
+   current_log_file_size=`ls -l $i | tr -s " " | cut -f5 -d " "`
+   let total_log_file_size= $total_log_file_size+$current_log_file_size
+done
+
+echo
+echo "Disk space comsumption for log files in $1" $total_log_file_size
+echo
+------------------------------------------------------------------------
+#!/bin/bash
+
+
+choice="0"
+
+trap control_c 2
+
+control_c()
+{
+  echo "Cleaning up temp files..."
+  for i in /temp/*
+  do
+     if !(test -d $i)
+	 then
+	   rm $i
+	 fi
+  done
+  exit 1
+}
+
+while(($choice != "1"))
+do
+  clear
+  echo
+  echo "Please seelct a option"
+  echo
+  echo "1 - EXIT"
+  read choice
+done
+-----------------------------------------------------------------
+
+#!/bin/bash
+
+echo "Budget dir creator"
+echo
+read -p "Enter last 2 digits of starting budgets year" start
+read -p "Enter last 2 digits of end budgets year" end
+echo
+
+eval mkdir -p /budgets/20{$start..$end}
+echo "Dir that exit under /budgets"
+ls /budgets
+ 
+ 
+--------------------------------------------
+#!/bin/bash
+
+set -u
+echo
+read -p "Enter the cost center:" cc_code
+echo
+echo "Cost center is: ${cc_code:=hfx123}"
+echo
+
+echo "This is something" $this_is_something
+
+---------------------------------------------------
+
+#!/bin/bash
+
+echo
+for i in /inputdir/*
+do
+    #to remove prefix dir path and trailer .tar file ext
+	just_file_name=`echo ${i//\/inputdir\/sat_data_/}`
+	new_dir_name=`echo ${just_file_name//.tar/}`
+	
+	#make a dir and copy archive and ext it in new loacation
+	mkdir /processdir/$new_dir_name
+	cp $i /processdir/$new_dir_name/$just_file_name
+	
+	cd /processdir/$new_dir_name
+	tar -xf $just_file_name
+done
+
+------------------------------------------------------------------
+#!/bin/bash
+
+
+echo {a..f}
+echo {a..z}{1..5}
+echo{001..56}
+
+-------------------------------------------------------------------------
+#!/bin/bash
+
+var= `./2.sh`
+echo $var
+
+------------------------------------------------------------------------
+
+#!/bin/bash
+
+echo "Reading file contents..."
+echo
+start_time=`date +%s`
+numlines=`wc -l < cities.txt`
+let num_of_indicator = 100/$numlines
+
+file_to_read=cities.txt
+printf '['
+while read line_from_file
+do
+   sleep 0.05
+   printf '.%0.0s' {$num_of_indicator}
+done < $file_to_read
+echo '] 100%'
+echo
+end_time=`date +%s`
+let elp_time=$end_time-$start_time
+echo
+echo "Ops completed in" $elp_time "seconds."
+echo
+
+
+-----------------------------------------------------------------------------------
+#!/bin/bash
+#this script generate dynamic backup script
+
+echo
+read -p "Enter new script without path or .sh" new_script
+new_script="./"$new_script.sh".sh" 
+
+echo "read -p \"enter source dir to backup\" backupdir" >> $new_script
+dateportion=`date +%Y-%m-%d`
+echo "tar -zvcf backup_$dateportion".tar" \$backupdir" >> $new_script
+chmod +x $new_script
+
+. $new_script
+echo "Script $new_script executed successfully"
+echo "#Backed up location: $backupdir" >> $new_script
+echo "Backed up location $backupdir"
+echo
+
+
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+package com.example.comparator;
+
+public class Employee {
+   private String EmployeeName;
+   private int    EmployeeId;
+   private double EmloyeeSalary;
+   private String 
+}

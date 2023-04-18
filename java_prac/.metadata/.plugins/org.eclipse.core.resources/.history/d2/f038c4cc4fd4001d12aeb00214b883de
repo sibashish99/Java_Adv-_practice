@@ -1,0 +1,15 @@
+package com.example.test;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class AllNumbersAreDivisibleByTwo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         List<Integer> alist=  Arrays.asList(2,4,8,12,44,64);
+         alist
+         
+	}
+
+}

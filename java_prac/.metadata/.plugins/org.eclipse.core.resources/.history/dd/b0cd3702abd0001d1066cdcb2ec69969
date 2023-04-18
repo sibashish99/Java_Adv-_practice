@@ -1,0 +1,15 @@
+package com.example.lambda;
+
+import java.util.HashMap;
+
+public class EmployeeData {
+	// to store details of the employee
+    private static HashMap<Integer, String> Employee = new HashMap<>();
+    // add method to add employee details to the hashmap
+    public static void add(String name, int ID){
+        if(!Employee.containsKey(ID)){
+            Employee.put(ID,name);
+        }else {
+            System.out.println("Employee already Registered");
+        }
+}

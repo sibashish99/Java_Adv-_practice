@@ -1,0 +1,17 @@
+package com.practice.util;
+
+import java.sql.Connection;
+
+public class DBConnecton {
+	Connection con;
+    public void createConnection() {
+    	//load driver
+    	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con= 
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    }
+}

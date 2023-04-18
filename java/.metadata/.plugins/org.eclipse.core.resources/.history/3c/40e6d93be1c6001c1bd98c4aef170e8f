@@ -1,0 +1,29 @@
+package com.training.demo;
+import java.util.*;
+
+public class HashSetExmApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Set<String> setValue= new HashSet<String>();
+		setValue.add("c++");
+		setValue.add("c#");
+		setValue.add("c");
+		setValue.add("objective c");
+		
+		System.out.println(setValue);
+		
+		Set<String> setValue2= new HashSet<String>(setValue);
+		setValue2.add("java");
+		System.out.println(setValue2);
+		
+		for (String val : setValue2) {
+			if(val=="java") {
+				System.out.println("");
+			}
+		}
+		
+
+	}
+
+}

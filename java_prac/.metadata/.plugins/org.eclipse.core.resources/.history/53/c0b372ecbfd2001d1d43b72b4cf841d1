@@ -1,0 +1,12 @@
+package com.example.test.two;
+
+public class Application {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+       Player p1= new Player("Sibashish",50,"Batsman");
+       Player p2= new Player("Shivam",50,"Batsman");
+       Player p3= new Player("Ashish",50,"Batsman");
+	}
+
+}

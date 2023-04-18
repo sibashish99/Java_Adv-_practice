@@ -1,0 +1,14 @@
+package com.java.method;
+
+public class Application {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         /**
+          * Method reference is used to refer method of functional interface.
+          * Each time when you are using lambda expression to just referring a method, you can replace your lambda expression with method reference. 
+          * 
+          * */
+	}
+
+}

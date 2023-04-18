@@ -1,0 +1,28 @@
+package com.example.test.three;
+
+public class PalildromeStringApp {
+
+	public static void main(String[] args) {
+      String str="My name is sibashish and i can speak malayalam";
+      String[] words= str.split(" ");
+      for(String w:words) {
+    	  if(isPalindrome(i)) {
+    		  System.out.println(i);
+    	  }
+      }
+      
+	}
+	public static boolean isPalindrome(String str) {
+		int start=0, end=str.length();
+		while(start>end) {
+			if(str.charAt(start)!= str.charAt(end)) {
+				return false;
+			} else {
+				start++;
+				end--;
+			}
+		}
+		return true;
+	}
+
+}

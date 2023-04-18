@@ -1,0 +1,15 @@
+package com.example.test.four;
+
+public class StringTest {
+
+	public static void main(String[] args) {
+      String str1="abc"; //string pool/ Literals
+      String str2="abc";
+      String str3= new String("abc");//we are creating object in our heap
+       
+      System.out.println(str1==str2);
+      System.out.println(str1==str3);
+      System.out.println(str1==str3);
+	}
+
+}

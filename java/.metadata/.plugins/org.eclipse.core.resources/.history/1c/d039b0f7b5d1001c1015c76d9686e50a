@@ -1,0 +1,14 @@
+package com.java.stream;
+
+public class Application {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         /**
+          * stream by importing java.util.stream package.
+          * 
+          * 
+          * */
+	}
+
+}

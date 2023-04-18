@@ -1,0 +1,11 @@
+package com.practice.entity;
+
+public class Student {
+    private int studentId;
+    private String studentName;
+    private String studentPhone;
+    private String studentCity;
+    private int studentAge;
+    
+    
+}

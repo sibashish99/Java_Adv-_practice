@@ -1,0 +1,20 @@
+package com.training.demo;
+
+import java.util.*;
+
+public class HashSetExmApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Set<String> setValue= new HashSet<String>();
+		setValue.add("c++");
+		setValue.add("c#");
+		setValue.add("c");
+		setValue.add("objective c");
+		
+		
+		
+
+	}
+
+}

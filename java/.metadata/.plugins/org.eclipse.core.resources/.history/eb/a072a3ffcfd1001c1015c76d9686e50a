@@ -1,0 +1,15 @@
+package com.java.stream;
+
+public class Product {
+  private String name;
+  private int id;
+  private int price;
+  private int quantity;
+  
+  public Product() {
+	super();
+	// TODO Auto-generated constructor stub
+  }
+  
+  
+}

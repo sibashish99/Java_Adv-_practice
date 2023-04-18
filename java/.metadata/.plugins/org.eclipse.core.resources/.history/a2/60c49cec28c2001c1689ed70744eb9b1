@@ -1,0 +1,15 @@
+package com.training.demo;
+
+public class VectorApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+          /**
+           * Vector is like the dynamic array which can grow or shrink its size. 
+           * Unlike array, we can store n-number of elements in it as there is no size limit.
+           *  It is a part of Java Collection framework since Java 1.2. It is found in the java.util package and implements the List interface, so we can use all the methods of List interface here.
+           * 
+           * */
+	}
+
+}

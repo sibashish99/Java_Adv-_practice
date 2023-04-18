@@ -1,0 +1,12 @@
+package com.practice.util;
+
+public class DBConnecton {
+    public void createConnection() {
+    	//load driver
+    	try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    }
+}

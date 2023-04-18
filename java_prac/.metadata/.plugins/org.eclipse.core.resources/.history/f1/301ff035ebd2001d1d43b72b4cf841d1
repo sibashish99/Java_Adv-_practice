@@ -1,0 +1,12 @@
+package com.example.test.four;
+
+import java.util.*;
+
+public class EmployeeApp {
+
+	public static void main(String[] args) {
+		List<Employee> employees= new ArrayList<Employee>();
+        Employee e1= new Employee("Sibashish",23,"57650")
+	}
+
+}

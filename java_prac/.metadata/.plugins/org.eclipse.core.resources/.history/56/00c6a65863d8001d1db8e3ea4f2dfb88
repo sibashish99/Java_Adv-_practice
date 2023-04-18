@@ -1,0 +1,11 @@
+package com.example.test.six;
+
+public class SingletonApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Singleton class1= new Singleton.getInstance();
+		
+	}
+
+}

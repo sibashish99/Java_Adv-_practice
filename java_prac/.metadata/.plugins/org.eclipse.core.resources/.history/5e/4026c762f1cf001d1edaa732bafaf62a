@@ -1,0 +1,32 @@
+package com.example.lambda;
+
+public class MyInterfaceApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//normal implementation
+        /*MyInterfaceClass obj1=new MyInterfaceClass();
+       obj1.helloMsg();*/
+		
+	   //anonymous implementation 
+		/*MyInterface obj1=new MyInterface() {
+			@Override
+			public void helloMsg() {
+				System.out.println("Hello from MyInterfaceClass");
+			}
+		};
+		obj1.helloMsg();*/
+		
+		//using lambda expression
+		MyInterface obj1 = () ->{
+			System.out.println("Hello from MyInterfaceClass");
+		};
+		obj1.helloMsg();
+		
+		SumInterface sum1 = (a,b) ->{
+			System.out.println( a+b);
+		};
+		sum1.
+	}
+
+}

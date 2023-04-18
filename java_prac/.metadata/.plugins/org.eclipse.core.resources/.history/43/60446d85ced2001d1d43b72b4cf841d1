@@ -1,0 +1,11 @@
+package com.example.test.three;
+
+public class GroupByLength {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        //write a program to group the words by length using java 8
+		List<String> str=
+	}
+
+}

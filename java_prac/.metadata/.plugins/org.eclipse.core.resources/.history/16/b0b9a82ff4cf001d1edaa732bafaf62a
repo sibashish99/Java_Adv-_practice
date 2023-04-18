@@ -1,0 +1,36 @@
+package com.example.lambda;
+
+public class RunnableApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        Runnable thread1  = () -> {
+        	for(int i =0;i<11;i++) {
+        		System.out.println("Value of the thread is ->"+ i);
+        		try {
+        			Thread.sleep(1000);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+        	}
+        };
+        
+        Thread t1= new Thread(thread1);
+        t1.start();
+        
+        
+        Runnable thread2  = () -> {
+        	for(int i =0;i<11;i++) {
+        		System.out.println("Value of the thread is ->"+ i);
+        		try {
+        			Thread.sleep(1000);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+        	}
+        };
+	}
+
+}

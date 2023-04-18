@@ -1,0 +1,11 @@
+package com.java.collections;
+
+public class NeedOfCollections {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      int[] arr= new int[100000];
+       
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.example.test.four;
+
+public class StringTest {
+
+	public static void main(String[] args) {
+      String str1="abc"; -- string pool
+      String str2="abc";
+      String str3= new String("abc"); -- we are createion object in our heap
+      
+
+	}
+
+}

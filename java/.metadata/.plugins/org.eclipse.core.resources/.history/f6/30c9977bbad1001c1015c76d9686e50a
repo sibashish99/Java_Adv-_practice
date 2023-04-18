@@ -1,0 +1,26 @@
+package com.java.stream;
+
+import java.util.stream.Stream;
+
+public class Application {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         /**
+          * stream by importing java.util.stream package.
+          * Stream does not store elements. It simply conveys elements 
+            from a source such as a data structure, an array, or an I/O channel, 
+            through a pipeline of computational operations.
+          * Operations performed on a stream does not modify it's source. For example, 
+            filtering a Stream obtained from a collection produces a new Stream without the filtered elements, 
+            rather than removing elements from the source collection.
+          * You can use stream to filter, collect, print, and convert from one data structure to other etc
+          * source->filter->sort->map->collect
+          * */
+		Stream<String> stream=Stream.of("a","b","c");
+		stream.forEach(System.out::println);
+		
+		Collection<String> col= new Collection<>("Java","C","CPP");
+	}
+
+}

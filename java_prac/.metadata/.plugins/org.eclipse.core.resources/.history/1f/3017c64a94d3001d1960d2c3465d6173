@@ -1,0 +1,6 @@
+package com.management.system;
+
+public class Student {
+    private int id;
+    private 
+}

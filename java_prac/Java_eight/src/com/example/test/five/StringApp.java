@@ -1,0 +1,16 @@
+package com.example.test.five;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class StringApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+       List<String> stringList= Arrays.asList("welcome","to","lumen","tech","bangalore");
+       stringList.stream().filter(s -> s.length()>5).forEach(System.out::println);
+       int count = (int) stringList.stream().filter(s -> s.length()>5).count();
+       System.out.println("Number of strings length more then 5 is => "+count );
+	}
+
+}

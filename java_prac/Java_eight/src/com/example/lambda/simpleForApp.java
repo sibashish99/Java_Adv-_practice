@@ -1,0 +1,15 @@
+package com.example.lambda;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class simpleForApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        List<Integer> value= Arrays.asList(1,4,5,6,22,89,1,19,23,44,12,90,1024);
+        value.forEach(i -> System.out.println(i));
+        
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.training.demo;
+
+import java.util.HashSet;
+
+public class HashSetApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        /**
+         * HashSet contains unique elements only.
+         * HashSet allows null value.
+         * HashSet is the best approach for search operations.
+         * It inherits the AbstractSet class and implements Set interface.
+         * HashSet => AbstractSet -> Set => Collection => Iterable  (-> implements, => extends)
+         * A list can contain duplicate elements whereas Set contains unique elements only.
+         * Java HashSet class is used to create a collection that uses a hash table for storage. 
+         * 
+         * */
+		
+		
+	}
+	public static void duplicateValue() {
+		Set<String> setVal= new HashSet<>();
+	}
+
+}

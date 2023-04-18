@@ -1,0 +1,915 @@
+ADV C TOPICS:
+-Recursion
+-storage class 
+-pointers
+-structure , union , enum
+-command line arg
+-file handling 
+-bit manipulation
+
+
+ 
+4) gcc~ install / other way
+-
+aCC pointer.c -o pointer
+./pointer
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+ -----------
+| RECURSION |
+ -----------
+Is a process in which a funtion calls itself directly or indirectly. 
+--> 
+ recurse(){
+    ... .. ...
+    recurse();
+    ... .. ...
+ }
+-----------------------------------
+| int oddEven(int n){             |                               |
+|    int temp=n;                  |
+|    if(n%2!=0){                  |
+|        return temp+1;           |
+|    }                            |
+|    else{                        |
+|     return temp-1;              |
+|    }                            |
+| }                               |
+|  int main(){                    |
+|  for(int i=1;i<=10;i++){        |
+|      printf("%d ",i);           |
+|  }                              |
+|  printf("\n");                  |
+|  for(int i=1;i<=10;i++){        |
+|      printf("%d ",oddEven(i));  |
+|  }                              |
+|  }                              |
+-----------------------------------
+ 
+recursion type: 1) direct recursion : if it calls same function it self 
+                 -->
+				 fun(){
+				  fun();
+				}
+                2) indirect recursion : If a fiunction is called indirect recursion , if a function (let fun1() ) calls another function (let fun2() ) and inside another function 
+				it calls the parent function(i.e fun1() ) directly or indirectly
+				--> 
+				fun(){
+				  fun1();
+				}
+				fun1(){
+				  fun();
+				}
+				----------------------------------------
+				example:
+#include <stdio.h>
+void odd();
+void even();
+int n=1;
+void odd(){
+    if(n<=10){
+        printf("%d ",n+1);
+        n++;
+        even();
+    }
+}
+void even(){
+    if(n<=10){
+        printf("%d ",n-1);
+        n++;
+        odd();
+    }
+}
+int main(){
+    odd();
+}
+
+				
+				3) tail recursion : if the recursive call is the last thing done by the function . There is no need to keep record of previous state.
+				4) non-tail recursion : if the recursive call is not the last thing done by the function .
+
+ 
+ 1) Next permutation with recursion
+ -->
+ #include<stdio.h>
+#include<string.h>
+void generatePermutation (char *, int, int);
+int main(){
+  char str[] = "ABC";
+  int n = strlen (str);
+  generatePermutation (str, 0, n);
+}
+
+void generatePermutation (char *str, const int start, int end)
+{
+  char temp;
+  int i, j;
+  for (i = start; i < end - 1; ++i)
+    {
+      for (j = i + 1; j < end; ++j)
+	{
+
+	  temp = str[i];
+	  str[i] = str[j];
+	  str[j] = temp;
+
+	  generatePermutation (str, i + 1, end);
+
+	  temp = str[i];
+	  str[i] = str[j];
+	  str[j] = temp;
+	}
+    }
+  printf ("%s ", str);
+}
+
+
+2) Print all possible strings of length k that can be formed from a set of n characters
+--> 
+#include<stdio.h>
+#include<string.h>
+void printAllKLengthRec(char set[], string prefix,int n, int k){
+	if (k == 0){
+		printf("%s",prefix);
+		return;
+	}
+	for (int i = 0; i < n; i++){
+		string newPrefix;
+		newPrefix = prefix + set[i];
+		printAllKLengthRec(set, newPrefix, n, k - 1);
+	}
+
+}
+
+void printAllKLength(char set[], int k,int n){
+	printAllKLengthRec(set, " ", n, k);
+}
+
+int main(){
+	char set1[] = {'a', 'b'};
+	int k = 3;
+	printAllKLength(set1, k, 2);
+	
+}
+
+3) Combinations in a String of Digits
+Output :1 2 3
+        1 23
+        12 3
+        123
+
+Input : 1234
+Output : 1 2 3 4 
+        1 2 34 
+        1 23 4 
+        1 234 
+        12 3 4 
+        12 34 
+        123 4 
+        1234 
+--> 
+
+#include<stdio.h>
+#include<string.h>
+void printCombinations(char* input, int index,char* output, int outLength){
+	if (input[index] == '\0'){
+		output[outLength] = '\0';
+		printf("%d ",output);
+		return;
+	}
+	
+	output[outLength] = input[index];
+	output[outLength + 1] = ' ';
+	printCombinations(input, index + 1, output,outLength + 2);
+	if(input[index + 1] != '\0')
+	printCombinations(input, index + 1, output,outLength + 1);
+	
+}
+int main(){
+	char input[] = "1214";
+	char *output = new char[100];
+
+	output[0] = '\0';
+	
+	printCombinations(input, 0, output, 0);
+	return 0;
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------
+| STORAGE CLASS :|
+------------------
+A storage class defines the scope (visibility) and life-time of variables and/or functions within a C Program.
+storage classes in a C program −
+- auto:  auto storage class is the default storage class for all local variables.
+  --> {
+      int mount;
+      auto int month;
+     }
+- register:The register storage class is used to define local variables that should be stored in a register instead of RAM. 
+  --> {
+     register int  miles;
+    }
+- static: The static storage class instructs the compiler to keep a local variable in existence during the life-time of the program instead of creating and destroying it each time
+  --> {
+     static int i = 5; 
+    }
+- extern: The extern storage class is used to give a reference of a global variable that is visible to ALL the program files
+  --> extern void write_extern();
+
+ ---------------------------------------------------------------------------
+ |              STORAGE         INITIAL-VALUE          SCOPE       LIFE     |
+ |                                                                          |   
+ |   AUTO         STACK          GARBAGE               WITHIN   END OF BLOCK|
+ |   EXTERN       DATA SEGMENT   0                     GLOBAL   TILL END    |
+ |   STATIC       DATA SEGMENT   0                     WITHIN   TILL END    |
+ |   REGISTER     CPU REGISTER   GARBAGE               WITHIN   END OF BLOCK|              
+ |---------------------------------------------------------------------------
+ 
+-->
+// A C program to demonstrate different storage
+
+#include <stdio.h>
+int x;
+void autoStorageClass(){
+
+	printf("\nDemonstrating auto class\n\n");
+	auto int a = 32;
+
+	printf("Value of the variable 'a'"" declared as auto: %d\n",a);
+	printf("--------------------------------");
+}
+
+void registerStorageClass(){
+
+	printf("\nDemonstrating register class\n\n");
+	register char b = 'G';
+	printf("Value of the variable 'b'"" declared as register: %d\n",b);
+	printf("--------------------------------");
+}
+
+void externStorageClass(){
+
+	printf("\nDemonstrating extern class\n\n");
+	extern int x;
+	printf("Value of the variable 'x'"" declared as extern: %d\n",x);
+	
+	x = 2;
+	printf("Modified value of the variable 'x'"" declared as extern: %d\n",x);
+
+	printf("--------------------------------");
+}
+
+void staticStorageClass(){
+	int i = 0;
+	printf("\nDemonstrating static class\n\n");
+
+	printf("Declaring 'y' as static inside the loop.\n""But this declaration will occur only"" once as 'y' is static.\n"
+		"If not, then every time the value of 'y' ""will be the declared value 5"" as in the case of variable 'p'\n");
+
+	printf("\nLoop started:\n");
+
+	for (i = 1; i < 5; i++) {
+		static int y = 5;
+		int p = 10;
+		y++;
+		p++;
+
+		printf("\nThe value of 'y', "
+			"declared as static, in %d "
+			"iteration is %d\n",
+			i, y);
+		printf("The value of non-static variable 'p', "
+			"in %d iteration is %d\n",
+			i, p);
+	}
+
+	printf("\nLoop ended:\n");
+
+	printf("--------------------------------");
+}
+
+int main(){
+
+	printf("A program to demonstrate"" Storage Classes in C\n\n");
+	autoStorageClass();
+	registerStorageClass();
+	externStorageClass();
+	staticStorageClass();
+
+	printf("\n\nStorage Classes demonstrated");
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+  ----------
+  |POINTERS|
+  ----------
+  If you have a variable var in your program, &var will give you its address in the memory.
+  Dynamic memory allocation, cannot be performed without using pointers.
+  A pointer is a variable whose value is the address of another variable, i.e., direct address of the memory location. 
+  --> type *var-name;
+  
+  #include <stdio.h>
+  int main () {
+
+   int  var = 20; 
+   int  *ip;        /* pointer variable */
+
+   ip = &var;  /* store address of var in pointer variable*/
+
+   printf("Address of var variable: %x\n", &var  );
+   printf("Address stored in ip variable: %x\n", ip );
+   printf("Value of *ip variable: %d\n", *ip );
+
+   return 0;
+  }
+  null pointer: It is always a good practice to assign a NULL value to a pointer variable in case you do not have an exact address to be assigned. 
+  This is done at the time of variable declaration. A pointer that is assigned NULL is called a null pointer.
+  
+  pointer of pointer:  When we define a pointer to a pointer, the first pointer contains the address of the second pointer,
+  -->
+  #include <stdio.h>
+  int main () {
+
+   int  var;
+   int  *ptr;
+   int  **pptr;
+
+   var = 3000;
+
+   /* take the address of var */
+   ptr = &var;
+
+   /* take the address of ptr using address of operator & */
+   pptr = &ptr;
+
+   /* take the value using pptr */
+   printf("Value of var = %d\n", var );
+   printf("Value available at *ptr = %d\n", *ptr );
+   printf("Value available at **pptr = %d\n", **pptr);
+
+   return 0;
+}
+ 
+   Array of pointer: int *ptr[MAX]; It declares ptr as an array of MAX integer pointers.
+   -->
+    #include <stdio.h>
+    const int MAX = 3;
+    int main () {
+
+     int  var[] = {10, 100, 200};
+     int i, *ptr[MAX];
+ 
+     for ( i = 0; i < MAX; i++) {
+       ptr[i] = &var[i]; /* assign the address of integer. */
+     }
+   
+     for ( i = 0; i < MAX; i++) {
+       printf("Value of var[%d] = %d\n", i, *ptr[i] );
+     }
+   
+     return 0;
+   }
+
+--------------------------------------------------------------------------------------------------------------------------------- 
+  
+ --------------------------
+| STRUCTURE , UNION , ENUM |
+ --------------------------
+ -->Structure: 
+ -Structure is another user defined data type available in C that allows to combine data items of different kinds.
+ -Structures are used to represent a record. Suppose you want to keep track of your books in a library.
+ -To define a structure, you must use the struct statement. The struct statement defines a new data type, with more than one member. 
+ -To access any member of a structure, we use the member access operator (.).
+ -
+  struct [structure tag] {
+
+   member definition;
+   member definition;
+   ...
+   member definition;
+  } 
+  -->
+  #include <stdio.h>
+  #include<string.h>
+ struct Books{
+    char name[20];
+    char author[20];
+    int  id; 
+ };
+ int main(){
+    struct Books book1;
+    
+    strcpy(book1.name,"C for professsionals");
+    strcpy(book1.author,"unknown");
+    book1.id=101;
+    
+    printf("Book id: %d\n",book1.id);
+    printf("Book name: %s\n",book1.name);
+    printf("Book author: %s",book1.author);
+    
+ }
+ 
+ 
+ -->Structures as Function Arguments
+ 
+ #include <stdio.h>
+ #include <string.h>
+ 
+struct Books {
+   char  title[50];
+   char  author[50];
+   int   book_id;
+};
+
+/* function declaration --> void printBook( struct Books book );*/
+
+
+void printBook( struct Books book ) {
+
+   printf( "Book title : %s\n", book.title);
+   printf( "Book author : %s\n", book.author);
+   printf( "Book book_id : %d\n", book.book_id);
+}
+
+int main( ) {
+
+   struct Books Book1;      
+   struct Books Book2;        
+ 
+   strcpy( Book1.title, "C Programming");
+   strcpy( Book1.author, "unknown"); 
+   Book1.book_id = 102;
+
+
+   strcpy( Book2.title, "Telecom Billing");
+   strcpy( Book2.author, "unknown");
+   Book2.book_id = 103;
+ 
+
+   printBook( Book1 );
+   printBook( Book2 );
+
+}
+
+-->Pointers to Structures
+ You can define pointers to structures in the same way as you define pointer to any other variable 
+  −-> struct Books *struct_pointer;
+ you can store the address of a structure variable in the above defined pointer variable
+  -->struct_pointer = &Book1;
+ #include <stdio.h>
+#include <string.h>
+ 
+struct Books {
+   char  title[50];
+   char  author[50];
+   char  subject[100];
+   int   book_id;
+};
+
+/*void printBook( struct Books *book );*/
+
+void printBook( struct Books *book ) {
+
+   printf( "Book title : %s\n", book->title);
+   printf( "Book author : %s\n", book->author);
+   printf( "Book subject : %s\n", book->subject);
+   printf( "Book book_id : %d\n", book->book_id);
+}
+int main( ) {
+
+   struct Books Book1;        
+   struct Books Book2;       
+   
+   strcpy( Book1.title, "C Programming");
+   strcpy( Book1.author, "Nuha Ali"); 
+   strcpy( Book1.subject, "C Programming Tutorial");
+   Book1.book_id = 6495407;
+
+   
+   strcpy( Book2.title, "Telecom Billing");
+   strcpy( Book2.author, "Zara Ali");
+   strcpy( Book2.subject, "Telecom Billing Tutorial");
+   Book2.book_id = 6495700;
+ 
+  
+   printBook( &Book1 );
+   printBook( &Book2 );
+
+}
+
+  --> Union: 
+  -A union is a special data type available in C that allows to store different data types in the same memory location.
+  -You can define a union with many members, but only one member can contain a value at any given time.
+  -To define a union, you must use the union
+  -
+   union [union tag] {
+    member definition;
+    member definition;
+    ...
+    member definition;
+  } [one or more union variables];
+ -  
+  
+  -->union Data {
+      int i;
+      float f;
+      char str[20];
+     } data;
+ -Now, a variable of Data type can store an integer, a floating-point number, or a string of characters. 
+  It means a single variable, i.e., same memory location, can be used to store multiple types of data.  
+ -
+ #include <stdio.h>
+ #include <string.h>
+ 
+ union Data {
+   int i;
+   float f;
+   char str[20];
+ };
+ 
+ int main( ) {
+   union Data data;        
+
+   data.i = 10;
+   data.f = 20.5;
+   strcpy( data.str, "Hello");
+
+   printf( "data.i --> %d\n", data.i);
+   printf( "data.f --> %f\n", data.f);
+   printf( "data.str --> %s\n", data.str);
+  }
+  -we can see that the values of i and f members of union got corrupted because the final value assigned to the 
+   variable has occupied the memory location and this is the reason that the value of str member is getting printed very well.
+  -
+  
+  #include <stdio.h>
+  #include <string.h>
+ 
+ union Data {
+   int i;
+   float f;
+   char str[20];
+ };
+ 
+ int main( ) {
+   union Data data;        
+
+   data.i = 10;
+   printf( "data.i : %d\n", data.i);
+   
+   data.f = 220.5;
+   printf( "data.f : %f\n", data.f);
+   
+   strcpy( data.str, "C Programming");
+   printf( "data.str : %s\n", data.str);
+ }
+ 
+ -->Enum:
+ -Enumeration (or enum) is a user defined data type in C.
+ -It is mainly used to assign names to integral constants, the names make a program easy to read and maintain.
+  --> enum State {Working = 1, Failed = 0}; 
+ -The keyword ‘enum’ is used to declare new enumeration types in C .
+  --> enum flag{constant1, constant2, constant3, ....... };
+ -
+ /* An example program to demonstrate working of enum in C */
+ 
+ #include<stdio.h>
+ enum week{Mon, Tue, Wed, Thur, Fri, Sat, Sun};
+ int main(){
+	enum week day;
+	day = Wed;
+	printf("%d",day);
+	return 0;
+ }
+ 
+ -
+ #include<stdio.h>
+ enum year{Jan, Feb, Mar, Apr, May, Jun, Jul,Aug, Sep, Oct, Nov, Dec};
+ 
+ int main(){
+  int i;
+  for (i=Jan; i<=Dec; i++){	
+	 printf("%d ", i);
+  }
+      
+ }
+
+ -
+ #include <stdio.h>
+ enum State {Working = 1, Failed = 0, Freezed = 0};
+ int main(){
+   printf("%d, %d, %d\n", Working, Failed, Freezed);
+   return 0;
+ }
+ 
+ -
+ #include <stdio.h>
+ enum day {sunday = 1, monday, tuesday = 5, wednesday, thursday = 10, friday, saturday};
+
+ int main(){
+	printf("%d %d %d %d %d %d %d\n", sunday, monday, tuesday, wednesday, thursday, friday, saturday);
+ }
+ 
+ -
+ #include <stdio.h>
+ enum State {WORKING = 0, FAILED, FREEZED};
+ enum State currState = 2;
+
+ enum State FindState() {
+	return currState;
+ }
+
+ int main() {
+  (FindState() == WORKING)? printf("WORKING..."): printf("NOT WORKING!");
+
+ }
+ --> error
+ "enum6.c", line 3: error #2144: a value of type "int" cannot be used to
+          initialize an entity of type "State"
+    enum State currState = 2;
+                           ^
+
+  1 error detected in the compilation of "enum6.c".
+  
+---------------------------------------------------------------------------------------------------------------------------------
+
+  -----------------
+| COMMAND LINE ARG |
+ ------------------
+ - It is possible to pass some values from the command line to your C programs when they are executed. 
+   These values are called command line arguments and many times they are important for your program especially when you want to control your program from outside instead of hard coding those values inside the code.
+ - The command line arguments are handled using main() function arguments where argc refers to the number of arguments passed, 
+   and argv[] is a pointer array which points to each argument passed to the program.
+ -
+ 
+ #include <stdio.h>
+ int main( int argc, char *argv[] )  {
+
+   if( argc == 2 ) {
+      printf("The argument supplied is %s\n", argv[1]);
+   }
+   else if( argc > 2 ) {
+      printf("Too many arguments supplied.\n");
+   }
+   else {
+      printf("One argument expected.\n");
+   }
+ }
+ -When the above code is compiled and executed with single argument, it produces the following result.
+  $./a.out testing
+  --> The argument supplied is testing
+  
+  When the above code is compiled and executed with a two arguments, it produces the following result.
+  $./a.out testing1 testing2
+  --> Too many arguments supplied.
+
+  When the above code is compiled and executed without passing any argument, it produces the following result.
+  $./a.out
+  --> One argument expected
+  
+  - Properties of Command Line Arguments:~
+   1)They are passed to main() function.
+   2)They are parameters/arguments supplied to the program when it is invoked.
+   3)They are used to control program from outside instead of hard coding those values inside the code.
+   4)argv[argc] is a NULL pointer.
+   5)argv[0] holds the name of the program.
+   6)argv[1] points to the first command line argument and argv[n] points last argument.
+
+---------------------------------------------------------------------------------------------------------------------------------
+  --------
+ | TYPEDEF|
+  --------
+  - The C programming language provides a keyword called typedef, which you can use to give a type a new name
+    --> typedef unsigned char BYTE;
+  -After this type definition, the identifier BYTE can be used as an abbreviation for the type unsigned char, for example..
+   BYTE  b1, b2;
+  -
+   #include <stdio.h>
+   #include <string.h>
+ 
+  typedef struct Books {
+    char title[50];
+    char author[50];
+    char subject[100];
+    int book_id;
+  } Book;
+ 
+  int main( ){
+   Book book;
+ 
+   strcpy( book.title, "C Programming");
+   strcpy( book.author, "N/A"); 
+   strcpy( book.subject, "C Programming Tutorial");
+   book.book_id = 101;
+ 
+   printf( "Book title : %s\n", book.title);
+   printf( "Book author : %s\n", book.author);
+   printf( "Book subject : %s\n", book.subject);
+   printf( "Book book_id : %d\n", book.book_id);
+
+   return 0;
+  }
+
+--------------------------------------------------------------------------------------------------------------------------------
+  ----------
+ | File I/O |
+  ----------
+  -C programming treats all the devices as files. So devices such as the display are addressed in the same way as files and the 
+   following three files are automatically opened when a program executes to provide access to the keyboard and screen.
+  -
+   Standard File	File Pointer	Device
+   ----------------------------------------
+   Standard input-->  stdin	       Keyboard
+   Standard output--> stdout	    Screen
+   Standard error-->  stderr	  Your screen
+   
+  -The getchar() and putchar() Functions:
+    -The int getchar(void) function reads the next available character from the screen and returns it as an integer. 
+	 This function reads only single character at a time.
+     You can use this method in the loop in case you want to read more than one character from the screen. 
+    -The int putchar(int c) function puts the passed character on the screen and returns the same character. 
+	 This function puts only single character at a time. 
+	 You can use this method in the loop in case you want to display more than one character on the screen. 
+  -
+   #include <stdio.h>
+   int main( ) {
+    int c;
+
+    printf( "Enter a value :");
+    c = getchar( );
+
+    printf( "\nYou entered: ");
+    putchar( c );
+  }  
+  -The gets() and puts() Functions:
+   -The char *gets(char *s) function reads a line from stdin into the buffer pointed to by s until either a terminating newline or EOF (End of File).
+   -The int puts(const char *s) function writes the string 's' and 'a' trailing newline to stdout.
+  -
+  #include <stdio.h>
+  int main( ) {
+   char str[100];
+
+   printf( "Enter a value :");
+   gets(str);
+
+   printf( "\nYou entered: ");
+   puts(str);
+ }
+ 
+ -The scanf() and printf() Functions:
+  -The int scanf(const char *format, ...) function reads the input from the standard input stream stdin and scans that input according to the format provided.
+  -The int printf(const char *format, ...) function writes the output to the standard output stream stdout and produces the output according to the format provided
+  -The format can be a simple constant string, but you can specify %s, %d, %c, %f, etc., to print or read strings, integer, character or float respectively. 
+-----------------------------------------------------------------------------------------------------------------------------------
+  ---------
+ | File I/O |
+  ---------
+ -A file represents a sequence of bytes, regardless of it being a text file or a binary file. C programming language provides access on high level functions as 
+  well as low level (OS level) calls to handle file on your storage devices.
+ -Opening a File: 
+  -You can use the fopen( ) function to create a new file or to open an existing file. This call will initialize an object of the type FILE, which contains 
+  all the information necessary to control the stream.
+  - The prototype of this function call is as follows:−
+   --> FILE *fopen( const char * filename, const char * mode );
+  -Here, filename is a string literal, which you will use to name your file, 
+  and access mode can have one of the following values:-
+   --> 	r = Opens an existing text file for reading purpose.
+        w =Opens a text file for writing. If it does not exist, then a new file is created. Here your program will start writing content from the beginning of the file.
+        a =Opens a text file for writing in appending mode. If it does not exist, then a new file is created. Here your program will start appending content in the existing file content.
+        r+ =Opens a text file for both reading and writing.
+		w+ =Opens a text file for both reading and writing. It first truncates the file to zero length if it exists, otherwise creates a file if it does not exist.
+		a+ =Opens a text file for both reading and writing. It creates the file if it does not exist. The reading will start from the beginning but writing can only be appended.
+		If you are going to handle binary files, then you will use following access modes instead of the above mentioned ones −
+           -->"rb", "wb", "ab", "rb+", "r+b", "wb+", "w+b", "ab+", "a+b"
+		   
+ -Closing a File:
+  -To close a file, use the fclose( ) function. 
+  -The prototype of this function is −
+   --> int fclose( FILE *fp );
+  -The fclose(-) function returns zero on success, or EOF if there is an error in closing the file. 
+  -This function actually flushes any data still pending in the buffer to the file, closes the file,
+   and releases any memory used for the file. 
+  -The EOF is a constant defined in the header file stdio.h.
+ 
+ -Writing a File:
+  -Following is the simplest function to write individual characters to a stream −
+   --> int fputc( int c, FILE *fp );
+  -The function fputc() writes the character value of the argument c to the output stream referenced by fp.
+  -It returns the written character written on success otherwise EOF if there is an error. 
+  -You can use the following functions to write a null-terminated string to a stream −
+   --> int fputs( const char *s, FILE *fp 
+  -The function fputs() writes the string s to the output stream referenced by fp. 
+  -It returns a non-negative value on success, otherwise EOF is returned in case of any error. 
+  -You can use int fprintf(FILE *fp,const char *format, ...) function as well to write a string into a file.
+  -
+  #include <stdio.h>
+  int main() {
+   FILE *fp;
+
+   fp = fopen("/tmp/test.txt", "w+");
+   fprintf(fp, "This is testing for fprintf...\n");
+   fputs("This is testing for fputs...\n", fp);
+   fclose(fp);
+  }
+  
+  -Reading a File
+   -Given below is the simplest function to read a single character from a file −
+    --> int fgetc( FILE * fp );
+   -The fgetc() function reads a character from the input file referenced by fp. 
+   -The return value is the character read, or in case of any error, it returns EOF.
+   -The following function allows to read a string from a stream −
+    --> char *fgets( char *buf, int n, FILE *fp );
+   -The functions fgets() reads up to n-1 characters from the input stream referenced by fp. 
+    It copies the read string into the buffer buf, appending a null character to terminate the string.
+ 
+ -------------------------------------------------------------------------------------------------------------------------------
+  ---------------
+ | PREPROCESSORS |
+  ---------------
+  -The C Preprocessor is not a part of the compiler, but is a separate step in the compilation process. 
+  -In simple terms, a C Preprocessor is just a text substitution tool and it instructs the compiler to do required pre-processing before the actual compilation. 
+   --> #define =Substitutes a preprocessor macro.
+       #include =Inserts a particular header from another file.
+       #undef =Undefines a preprocessor macro.
+       #ifdef =Returns true if this macro is defined.
+       #ifndef =Returns true if this macro is not defined.
+       #if =Tests if a compile time condition is true.
+       #else =The alternative for #if.
+       #elif =#else and #if in one statement.
+       #endif =Ends preprocessor conditional.
+	   #error =Prints error message on stderr.
+       #pragma =Issues special commands to the compiler, using a standardized metho
+  -Analyze the following examples to understand various directives.
+   --> #define MAX_ARRAY_LENGTH 20
+  -A macro is normally confined to a single line. The macro continuation operator (\) is used to continue a macro that is too long for a single line. For example −
+    --> #define  message_for(a, b)  \
+          printf(#a " and " #b ": We love you!\n")
+  -The stringize or number-sign operator ( '#' ), when used within a macro definition, converts a macro parameter into a string constant.
+  -The preprocessor defined operator is used in constant expressions to determine if an identifier is defined using #define. 
+   If the specified identifier is defined, the value is true (non-zero). If the symbol is not defined, the value is false (zero). 
+  - 
+  #include <stdio.h>
+  #if !defined (MESSAGE)
+  #define MESSAGE "You wish!"
+  #endif
+
+  int main(void) {
+   printf("Here is the message: %s\n", MESSAGE);  
+   return 0;
+  }
+ 
+ - parameterized macro :
+   -->
+   #include <stdio.h>
+   #define MAX(x,y) ((x) > (y) ? (x) : (y))
+   int main(void) {
+    printf("Max between 20 and 10 is %d\n", MAX(10, 20));  
+    return 0;
+   }
+   
+---------------------------------------------------------------------------------------------------------------------------------
+  ---------------
+ | FILE HANDLING |
+  ---------------
+  -
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,20 @@
+package com.example.lambda;
+
+public class StaticandDefaultMethodsApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		    int a = 8;
+	        int b = 6;
+	        // object of test class
+	        StaticandDefaultMethodsClass t = new StaticandDefaultMethodsClass();
+	        // default method called using class object
+	        System.out.println("add ->"+t.add(a,b));
+	        System.out.println("sub ->"+t.sub(a,b));
+	        System.out.println("sq ->"+t.square(10));
+	        // static methods called directly by the interface name
+	        System.out.println("mul ->"+StaticandDefaultMethods.multiply(a,b));
+	        System.out.println("add ->"+StaticandDefaultMethods.divide(a,b));
+	}
+
+}
